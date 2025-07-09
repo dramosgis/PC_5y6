@@ -135,43 +135,6 @@ public class GestorDeEntregas {
     public ArrayList<Entrega> obtenerEntregasPorRepartidor(String idRepartidor) {
         return entregasPorRepartidor.getOrDefault(idRepartidor, new ArrayList<>());
     }
-
-    // Cuenta cuántas entregas hay en cierto estado (ej. "pendiente", "en curso", etc.)
-    public int contarEntregasPorEstado(String estado) {
-        int contador = 0;
-        for (Entrega e : entregas) {
-            if (e.getEstadoEntrega().equalsIgnoreCase(estado)) {
-                contador++;
-            }
-        }
-        return contador;
-    }
-
-    // Recorre los pedidos para hallar cuál es el producto más solicitado
-    public String obtenerProductoMasPedido() {
-        HashMap<String, Integer> contadorProductos = new HashMap<>();
-        for (Pedido p : pedidos) {
-            contadorProductos.put(p.getProducto(),
-                    contadorProductos.getOrDefault(p.getProducto(), 0) + p.getCantidad());
-        }
-
-        String productoMasPedido = null;
-        int maxCantidad = 0;
-
-        for (String producto : contadorProductos.keySet()) {
-            int cantidad = contadorProductos.get(producto);
-            if (cantidad > maxCantidad) {
-                maxCantidad = cantidad;
-                productoMasPedido = producto;
-            }
-        }
-
-        return productoMasPedido;
-    }
-
-    // Verifica si las credenciales del administrador son válidas
-    public boolean validarAccesoAdministrador(String id, String contrasena) {
-        return id.equals("admin") && contrasena.equals("123456");
-    }
+    
 }
 
